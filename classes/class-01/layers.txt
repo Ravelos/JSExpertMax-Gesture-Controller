@@ -1,0 +1,21 @@
+workers -> Background processes.
+-> All the heavy logic (Involves CPU)
+-> All that could stuck the screen (for loop, Machine Learning, AI, Webcam processing)
+-> Call the business rules form service.
+
+services -> 
+-> Business rules
+-> external call (API, files, Database)
+
+views ->
+-> All iteration with DOM (HTML)
+
+controllers
+-> Middle layer among services,workers and views.
+
+factories
+-> imports dependencies
+-> creates the final objects in order to make the calls
+-> returns a function that initializes the flow from the component
+
+index.js -> it is responsible for calling all the layers
