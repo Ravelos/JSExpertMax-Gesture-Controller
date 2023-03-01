@@ -2,6 +2,7 @@ export default class Camera {
   constructor() {
     this.video = document.createElement("video");
   }
+
   static async init() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw new Error(
@@ -11,10 +12,12 @@ export default class Camera {
 
     const videoConfig = {
       audio: false,
-      width: globalThis.screen.availWidth,
-      height: globalThis.screen.availHeight,
-      frameRate: {
-        ideal: 60,
+      video: {
+        width: globalThis.screen.availWidth,
+        height: globalThis.screen.availHeight,
+        frameRate: {
+          ideal: 60,
+        },
       },
     };
 
@@ -22,6 +25,7 @@ export default class Camera {
     const camera = new Camera();
     camera.video.srcObject = stream;
 
+    // debug reasons
     camera.video.height = 240;
     camera.video.width = 320;
     document.body.append(camera.video);
