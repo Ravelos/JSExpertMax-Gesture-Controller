@@ -1,9 +1,11 @@
 export default class Controller {
-  #view;
-  #service;
-  constructor({ view, service }) {
-    this.#view = view;
-    this.#service = service;
+  #view
+  #service
+  #worker
+  constructor({ view, service, worker }) {
+    this.#view = view
+    this.#service = service
+    this.#worker = this.#configureWorker(worker)
     this.#view.configureOnBtnClick(this.onBtnStart.bind(this));
   }
 
@@ -13,6 +15,15 @@ export default class Controller {
     return controller.init();
   }
 
+  #configureWorker(worker){
+    worker.onmessage = (msg) =>{
+      if('READY' === msg.data){
+        this.#view.enableButton()
+        return;
+      }
+    }
+
+  }
   async init() {
     console.log("init!!!");
   }
